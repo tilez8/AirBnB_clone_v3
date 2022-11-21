@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""reviews.py"""
+"""Review view"""
 
 from api.v1.views import app_views
 from flask import abort, jsonify, make_response, request
@@ -12,7 +12,7 @@ from models.place import Place
 @app_views.route('/places/<string:place_id>/reviews', methods=['GET'],
                  strict_slashes=False)
 def get_reviews(place_id):
-    """get reviews for a specified place"""
+    """Fetch reviews for a specified place"""
     place = storage.get("Place", place_id)
     if place is None:
         abort(404)
@@ -25,7 +25,7 @@ def get_reviews(place_id):
 @app_views.route('/reviews/<string:review_id>', methods=['GET'],
                  strict_slashes=False)
 def get_review(review_id):
-    """get review information for specified review"""
+    """Fetch review information for specified review"""
     review = storage.get("Review", review_id)
     if review is None:
         abort(404)
@@ -35,7 +35,7 @@ def get_review(review_id):
 @app_views.route('/reviews/<string:review_id>', methods=['DELETE'],
                  strict_slashes=False)
 def delete_review(review_id):
-    """deletes a review based on its review_id"""
+    """Delete a review based on its review_id"""
     review = storage.get("Review", review_id)
     if review is None:
         abort(404)
@@ -47,7 +47,7 @@ def delete_review(review_id):
 @app_views.route('/places/<string:place_id>/reviews', methods=['POST'],
                  strict_slashes=False)
 def post_review(place_id):
-    """create a new review"""
+    """Create a new review"""
     place = storage.get("Place", place_id)
     if place is None:
         abort(404)
@@ -70,7 +70,7 @@ def post_review(place_id):
 @app_views.route('/reviews/<string:review_id>', methods=['PUT'],
                  strict_slashes=False)
 def put_review(review_id):
-    """update a review"""
+    """Update a review"""
     review = storage.get("Review", review_id)
     if review is None:
         abort(404)

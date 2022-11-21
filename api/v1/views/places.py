@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""places.py"""
+"""Places view"""
 
 from api.v1.views import app_views
 from flask import abort, jsonify, make_response, request
@@ -12,7 +12,7 @@ from models.user import User
 @app_views.route('/cities/<string:city_id>/places', methods=['GET'],
                  strict_slashes=False)
 def get_places(city_id):
-    """get place information for all places in a specified city"""
+    """Fetch place information"""
     city = storage.get("City", city_id)
     if city is None:
         abort(404)
@@ -25,7 +25,7 @@ def get_places(city_id):
 @app_views.route('/places/<string:place_id>', methods=['GET'],
                  strict_slashes=False)
 def get_place(place_id):
-    """get place information for specified place"""
+    """Fetch place information for specified place"""
     place = storage.get("Place", place_id)
     if place is None:
         abort(404)
@@ -35,7 +35,7 @@ def get_place(place_id):
 @app_views.route('/places/<string:place_id>', methods=['DELETE'],
                  strict_slashes=False)
 def delete_place(place_id):
-    """deletes a place based on its place_id"""
+    """Delete a place based on its place_id"""
     place = storage.get("Place", place_id)
     if place is None:
         abort(404)
@@ -47,7 +47,7 @@ def delete_place(place_id):
 @app_views.route('/cities/<string:city_id>/places', methods=['POST'],
                  strict_slashes=False)
 def post_place(city_id):
-    """create a new place"""
+    """Create a new place"""
     city = storage.get("City", city_id)
     if city is None:
         abort(404)
@@ -70,7 +70,7 @@ def post_place(city_id):
 @app_views.route('/places/<string:place_id>', methods=['PUT'],
                  strict_slashes=False)
 def put_place(place_id):
-    """update a place"""
+    """Update a place"""
     place = storage.get("Place", place_id)
     if place is None:
         abort(404)
@@ -86,7 +86,7 @@ def put_place(place_id):
 
 @app_views.route('/places_search', methods=['POST'], strict_slashes=False)
 def post_places_search():
-    """searches for a place"""
+    """Searche for place"""
     if request.get_json() is not None:
         params = request.get_json()
         states = params.get('states', [])
